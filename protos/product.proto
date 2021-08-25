@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+service ProductService {
+  rpc GetAllProduct(ProductCriteria) returns(ProductList) { }
+  rpc GetProduct(ProductId) returns(Product) { }
+  rpc DeleteProduct(ProductId) returns(Empty) { }
+  rpc EditProduct(Product) returns(Product) { }
+  rpc AddProduct(Product) returns(Product) { }
+}
+
+message Empty {}
+
+message ProductId {
+  string id = 1;
+}
+
+message ProductCriteria {
+  string name = 1;
+  string code = 2;
+  string branchId = 3;
+  string color = 4;
+  string sortBy = 5;
+  string sortType = 6;
+  string pageSize = 7;
+  string pageNum = 8;
+}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  string code = 3;
+  string description = 4;
+  string branchId = 5;
+  string createdAt = 6;
+  repeated string colors = 7;
+}
+
+message ProductList {
+  repeated Product items = 1;
+  int32 total = 2;
+}
