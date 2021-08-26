@@ -85,6 +85,7 @@ const ProductModel = {
         },
       ],
     }).then(x => {
+      if (!x) return null;
       const item = x.get({ plain: true });
       item.colors = item.colors.map(c => c.color);
       return item;
